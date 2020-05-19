@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SerialIRGUI", "SerialIRGUI\SerialIRGUI.csproj", "{B6FD8ED9-E4DD-4286-A11D-E0F36A37405D}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SerialIR", "SerialIR\SerialIR.csproj", "{6C9477F3-D735-4DB3-BCF6-A5442D8252CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerialIR.Common", "SerialIR.Common\SerialIR.Common.csproj", "{58CF9EC6-1EA2-4563-AC7A-0253158B7A79}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B6FD8ED9-E4DD-4286-A11D-E0F36A37405D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B6FD8ED9-E4DD-4286-A11D-E0F36A37405D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B6FD8ED9-E4DD-4286-A11D-E0F36A37405D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B6FD8ED9-E4DD-4286-A11D-E0F36A37405D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6C9477F3-D735-4DB3-BCF6-A5442D8252CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6C9477F3-D735-4DB3-BCF6-A5442D8252CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C9477F3-D735-4DB3-BCF6-A5442D8252CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C9477F3-D735-4DB3-BCF6-A5442D8252CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58CF9EC6-1EA2-4563-AC7A-0253158B7A79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58CF9EC6-1EA2-4563-AC7A-0253158B7A79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58CF9EC6-1EA2-4563-AC7A-0253158B7A79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58CF9EC6-1EA2-4563-AC7A-0253158B7A79}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
