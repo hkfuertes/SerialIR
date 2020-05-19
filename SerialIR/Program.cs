@@ -1,14 +1,6 @@
 ﻿using CommandLine;
-using Newtonsoft.Json;
-using System;
-using System.IO;
-using System.IO.Ports;
-using System.Linq;
-using System.Reflection;
-using System.Text.Json.Serialization;
 using System.Threading;
-using WindowsInput;
-using WindowsInput.Native;
+using SerialIR.Common;
 
 namespace SerialIR
 {
@@ -29,59 +21,22 @@ namespace SerialIR
     }
     class Program
     {
-        // Create the serial port with basic settings
-        private SerialPort Port;
-        InputSimulator Sim = new InputSimulator();
-        Configuration Config;
-
-        bool Verbose = false;
-        bool ReadOnly = false;
-
         static void Main(string[] args)
         {
+            /*
+                string test_path = @"C:\Users\hkfuertes\source\repos\SerialIR\apple_silver_media.json";
+                string test_com = "COM5";
+                args = new string[] { "-p","", "-c", "" };
+            */
             Parser.Default.ParseArguments<Options>(args)
                    .WithParsed<Options>(o =>
                    {
-                       new Program(o.Port, o.ConfigPath, o.Verbose, o.ReadOnly);
+                       //var process = new SerialIRProcess(test_com, test_path, o.Verbose, o.ReadOnly);
+                       var process = new SerialIRProcess(o.Port, o.ConfigPath, o.Verbose, o.ReadOnly);
+                       Thread mainthread = new Thread(process.StartLoop);
+                       mainthread.Start();
+                       mainthread.Join();
                    });
         }
-
-        private Program(string comport, string path, bool verbose, bool ronly)
-        {
-            try
-            {
-                Console.WriteLine("[i] Listening on port: " + comport);
-                this.Verbose = verbose;
-                this.ReadOnly = ronly;
-                this.Config = JsonConvert.DeserializeObject<Configuration>(File.ReadAllText(path));
-
-                this.Port = new SerialPort(comport, 9600, Parity.None, 8, StopBits.One);
-                this.Port.DataReceived += new SerialDataReceivedEventHandler(dataReceived);
-                this.Port.Open();
-
-                // Enter an application loop to keep this thread alive
-                while (true) ;
-            }catch(Exception ex)
-            {
-                Console.WriteLine("[!] Something went wrong!");
-            }
-        }
-
-
-        private void dataReceived(object sender, SerialDataReceivedEventArgs e)
-        {
-            var data = this.Port.ReadExisting().TrimEnd(Environment.NewLine.ToCharArray());
-            if (data != "FFFFFFFF")
-            {
-                if(this.Verbose || this.ReadOnly)
-                    Console.WriteLine(data+": received!");
-                if (Config.Keys.ContainsKey(data) && !this.ReadOnly)
-                {
-                    Sim.Keyboard.KeyPress((VirtualKeyCode)Config.Keys[data]);
-                }
-                
-            }
-        }
-
     }
 }
