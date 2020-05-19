@@ -1,5 +1,5 @@
 # Simple Serial IR-Arduino Bridge
-The main goal of this project is to provide a serial connection betwen an Arduino (using now an Arduino Nano) and a Windows (or any .Net Core) system.
+The main goal of this project is to provide a serial connection betwen an Arduino (using now an Arduino Nano) and a Windows (or any .Net Core compatible) system.
 
 ## Command Line Application
 To run the application simply open a terminal an run the `SerialIR.exe` with the required `-c` and `-p` parameters.
