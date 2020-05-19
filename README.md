@@ -9,25 +9,20 @@ You can find the sketch [here](SerialIR.ino). In order to compile it you need th
 ## Command Line Application
 To run the application simply open a terminal an run the `SerialIR.exe` with the required `-c` and `-p` parameters.
 ```
-> SerialIR.exe
+> .\SerialIR.exe --help
 SerialIR 1.0.0
 Copyright (C) 2020 SerialIR
 
-ERROR(S):
-  Required option 'p, port' is missing.
-  Required option 'c, config' is missing.
-
   -p, --port       Required. COM port with Arduino.
 
-  -c, --config     Required. Configuration/Mapping file.
-
-  -r, --read       (Default: false) Just read code, not execute, ideal to learn key numbers.
+  -c, --config     Configuration/Mapping file.
 
   -v, --verbose    (Default: false) Prints all messages to standard output.
 
   --help           Display this help screen.
 
   --version        Display version information.
+
 ```
 
 For the configuration/mapping file here is an example for the Apple Silver Remote:
@@ -45,7 +40,7 @@ For the configuration/mapping file here is an example for the Apple Silver Remot
 }
 ```
 
-The HEX value in the `keys` array is the code registered by the Arduino IR receiver. You can run `SerialIR.exe -p <COMPORT> -c not-used -r` to just read the codes.
+The HEX value in the `keys` array is the code registered by the Arduino IR receiver. You can run `SerialIR.exe -p <COMPORT> -v` to just read the codes.
 
 The decimal value in the `keys` array is the numeric representation of the key, see [VirtualKeyCode.cs](VirtualKeyCode.cs) for the complete list of keycodes.
 
