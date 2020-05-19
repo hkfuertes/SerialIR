@@ -1,6 +1,11 @@
 # Simple Serial IR-Arduino Bridge
 The main goal of this project is to provide a serial connection betwen an Arduino (using now an Arduino Nano) and a Windows (or any .Net Core compatible) system.
 
+## Arduino Sketch
+You can find the sketch [here](SerialIR.ino). In order to compile it you need the __*Arduino-IRremote*__ library.
+
+ >Arduino-IRremote: https://github.com/z3t0/Arduino-IRremote or also via _Arduino IDE Library Manager_.
+
 ## Command Line Application
 To run the application simply open a terminal an run the `SerialIR.exe` with the required `-c` and `-p` parameters.
 ```
