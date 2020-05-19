@@ -26,8 +26,9 @@ namespace SerialIR
             /*
                 string test_path = @"C:\Users\hkfuertes\source\repos\SerialIR\apple_silver_media.json";
                 string test_com = "COM5";
-                args = new string[] { "-p","", "-c", "" };
+                args = new string[] { "-p","", "-c", "", "-v", "-r" };
             */
+            
             Parser.Default.ParseArguments<Options>(args)
                    .WithParsed<Options>(o =>
                    {

@@ -52,7 +52,6 @@ namespace SerialIR.Common
                 while (!this.Stop);
                 this.Port.Close();
             }
-            
         }
 
         public void EndLoop()
@@ -67,9 +66,11 @@ namespace SerialIR.Common
             if (data != "FFFFFFFF")
             {
                 if (this.Verbose || this.ReadOnly)
-                    Console.WriteLine(data + ": received!");
+                    Console.WriteLine("[i] "+ data + ": received!");
                 if (Config.Keys.ContainsKey(data) && !this.ReadOnly)
                 {
+                    if (this.Verbose && !this.ReadOnly)
+                        Console.WriteLine("[i] Executing " + Config.Keys[data] + " key!");
                     Sim.Keyboard.KeyPress((VirtualKeyCode)Config.Keys[data]);
                 }
 
