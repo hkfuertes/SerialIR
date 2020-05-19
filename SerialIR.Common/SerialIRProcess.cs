@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Ports;
 using WindowsInput;
@@ -18,14 +19,33 @@ namespace SerialIR.Common
         bool ReadOnly = false;
         bool Stop = false;
 
-        public  SerialIRProcess(string comport, string path, bool verbose, bool ronly)
+        public  SerialIRProcess(string comport, string path, bool verbose)
         {
             try
             {
-                Console.WriteLine("[i] Listening on port: " + comport);
+                if(verbose)
+                    Console.WriteLine("[i] Listening on port: " + comport);
                 this.Verbose = verbose;
-                this.ReadOnly = ronly;
-                this.Config = JsonConvert.DeserializeObject<Configuration>(File.ReadAllText(path));
+                if (path != null)
+                {
+                    this.Config = JsonConvert.DeserializeObject<Configuration>(File.ReadAllText(path));
+                    this.ReadOnly = false;
+                    if (verbose)
+                    {
+                        Console.WriteLine("[+] Configuration: " + path);
+                        Console.WriteLine("[|] Remote: " + Config.Remote);
+                        Console.WriteLine("[+] Profile: " + Config.Name);
+                    }
+                        
+                }
+                else
+                {
+                    this.Config = new Configuration();
+                    this.Config.Keys = new Dictionary<string, int>();
+                    this.ReadOnly = true;
+                    if (verbose)
+                        Console.WriteLine("[!] No configuration, going to readonly mode.");
+                }
 
                 this.Port = new SerialPort(comport, 9600, Parity.None, 8, StopBits.One);
                 this.Port.DataReceived += new SerialDataReceivedEventHandler(dataReceived);
@@ -70,8 +90,8 @@ namespace SerialIR.Common
                 if (Config.Keys.ContainsKey(data) && !this.ReadOnly)
                 {
                     if (this.Verbose && !this.ReadOnly)
-                        Console.WriteLine("[i] Executing " + Config.Keys[data] + " key!");
-                    Sim.Keyboard.KeyPress((VirtualKeyCode)Config.Keys[data]);
+                        Console.WriteLine("[i] Executing " + Config.Keys?[data] + " key!");
+                    Sim.Keyboard.KeyPress((VirtualKeyCode)Config.Keys?[data]);
                 }
 
             }
