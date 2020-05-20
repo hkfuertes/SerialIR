@@ -1,0 +1,12 @@
+﻿{
+	"name": "Powerpoint",
+	"remote": "Apple Remote Silver",
+	"keys": {
+		"77E150A4": "UP",
+		"77E130A4": "DOWN",
+		"77E1A0A4": "OEM_PERIOD",
+		"77E160A4": "RIGHT",
+		"77E190A4": "LEFT",
+		"77E1C0A4": "F5"
+	}
+}

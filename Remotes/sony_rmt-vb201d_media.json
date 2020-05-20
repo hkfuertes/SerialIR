@@ -1,0 +1,14 @@
+﻿{
+	"name": "Multimedia",
+	"remote": "Sony RMT-VB201D",
+	"keys": {
+		"490": "VOLUME_UP",
+		"C90": "VOLUME_DOWN",
+		"58B47": "MEDIA_PLAY_PAUSE",
+		"98B47": "MEDIA_PLAY_PAUSE", 
+		"6AB47": "MEDIA_NEXT_TRACK",
+		"EAB47": "MEDIA_PREV_TRACK",
+		"18B47": "MEDIA_STOP",
+		"290": "VOLUME_MUTE"
+	}
+}
