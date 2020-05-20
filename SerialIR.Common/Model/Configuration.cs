@@ -15,6 +15,6 @@ namespace SerialIR.Common
         public string Remote { get; set; }
 
         [JsonProperty("keys")]
-        public Dictionary<string, int> Keys { get; set; }
+        public Dictionary<string, string> Keys { get; set; }
     }
 }

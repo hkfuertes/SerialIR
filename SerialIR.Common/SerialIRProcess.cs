@@ -30,7 +30,7 @@ namespace SerialIR.Common
                 {
                     this.Config = JsonConvert.DeserializeObject<Configuration>(File.ReadAllText(path));
                     this.ReadOnly = false;
-                    if (verbose)
+                    if (verbose || true)
                     {
                         Console.WriteLine("[+] Configuration: " + path);
                         Console.WriteLine("[|] Remote: " + Config.Remote);
@@ -41,9 +41,9 @@ namespace SerialIR.Common
                 else
                 {
                     this.Config = new Configuration();
-                    this.Config.Keys = new Dictionary<string, int>();
+                    this.Config.Keys = new Dictionary<string, string>();
                     this.ReadOnly = true;
-                    if (verbose)
+                    if (verbose || true)
                         Console.WriteLine("[!] No configuration, going to readonly mode.");
                 }
 
@@ -56,6 +56,7 @@ namespace SerialIR.Common
             {
                 this.Stop = true;
                 Console.WriteLine("[!] Something went wrong!");
+                Console.WriteLine("[!] Exception: "+ ex.Message);
             }
         }
 
@@ -90,11 +91,37 @@ namespace SerialIR.Common
                 if (Config.Keys.ContainsKey(data) && !this.ReadOnly)
                 {
                     if (this.Verbose && !this.ReadOnly)
-                        Console.WriteLine("[i] Executing " + Config.Keys?[data] + " key!");
-                    Sim.Keyboard.KeyPress((VirtualKeyCode)Config.Keys?[data]);
+                        Console.WriteLine("[i] Executing Key: " + Config.Keys?[data]);
+
+                    int valueToSend = getEnumValue(this.Config.Keys?[data]);
+                    if(valueToSend > -1)
+                    {
+                        Sim.Keyboard.KeyPress((VirtualKeyCode)valueToSend);
+                    } else if (this.Verbose)
+                    {
+                        Console.WriteLine("[!] Key "+ Config.Keys?[data] + " not recognized!");
+                    }
                 }
 
             }
+        }
+
+        private int getEnumValue(string value)
+        {
+            int val;
+            
+            if (Int32.TryParse(value, out val))
+            {
+                return val;
+            }
+
+            VirtualKeyCode retVal;
+            if (Enum.TryParse(value, out retVal))
+            {
+                return (int)retVal;
+            }
+
+            return -1 ;
         }
 
     }
