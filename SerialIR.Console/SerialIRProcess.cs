@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using SerialIR.Console;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,7 +7,7 @@ using System.IO.Ports;
 using WindowsInput;
 using WindowsInput.Native;
 
-namespace SerialIR.Common
+namespace SerialIR.Console
 {
     public class SerialIRProcess { 
         // Create the serial port with basic settings
@@ -23,7 +24,7 @@ namespace SerialIR.Common
             try
             {
                 if(verbose)
-                    Console.WriteLine("[i] Listening on port: " + comport);
+                    System.Console.WriteLine("[i] Listening on port: " + comport);
                 this.Verbose = verbose;
                 if (path != null)
                 {
@@ -31,9 +32,9 @@ namespace SerialIR.Common
                     this.ReadOnly = false;
                     if (verbose || true)
                     {
-                        Console.WriteLine("[+] Configuration: " + path);
-                        Console.WriteLine("[|] Remote: " + Config.Remote);
-                        Console.WriteLine("[+] Profile: " + Config.Name);
+                        System.Console.WriteLine("[+] Configuration: " + path);
+                        System.Console.WriteLine("[|] Remote: " + Config.Remote);
+                        System.Console.WriteLine("[+] Profile: " + Config.Name);
                     }
                         
                 }
@@ -43,7 +44,7 @@ namespace SerialIR.Common
                     this.Config.Keys = new Dictionary<string, string>();
                     this.ReadOnly = true;
                     if (verbose || true)
-                        Console.WriteLine("[!] No configuration, going to readonly mode.");
+                        System.Console.WriteLine("[!] No configuration, going to readonly mode.");
                 }
 
                 this.Port = new SerialPort(comport, 9600, Parity.None, 8, StopBits.One);
@@ -54,8 +55,8 @@ namespace SerialIR.Common
             catch (Exception ex)
             {
                 this.Stop = true;
-                Console.WriteLine("[!] Something went wrong!");
-                Console.WriteLine("[!] Exception: "+ ex.Message);
+                System.Console.WriteLine("[!] Something went wrong!");
+                System.Console.WriteLine("[!] Exception: "+ ex.Message);
             }
         }
 
@@ -86,11 +87,11 @@ namespace SerialIR.Common
             if (data != "FFFFFFFF")
             {
                 if (this.Verbose || this.ReadOnly)
-                    Console.WriteLine("[i] "+ data + ": received!");
+                    System.Console.WriteLine("[i] "+ data + ": received!");
                 if (Config.Keys.ContainsKey(data) && !this.ReadOnly)
                 {
                     if (this.Verbose && !this.ReadOnly)
-                        Console.WriteLine("[i] Executing Key: " + Config.Keys?[data]);
+                        System.Console.WriteLine("[i] Executing Key: " + Config.Keys?[data]);
 
                     int valueToSend = getEnumValue(this.Config.Keys?[data]);
                     if(valueToSend > -1)
@@ -98,7 +99,7 @@ namespace SerialIR.Common
                         Sim.Keyboard.KeyPress((VirtualKeyCode)valueToSend);
                     } else if (this.Verbose)
                     {
-                        Console.WriteLine("[!] Key "+ Config.Keys?[data] + " not recognized!");
+                        System.Console.WriteLine("[!] Key "+ Config.Keys?[data] + " not recognized!");
                     }
                 }
 

@@ -1,8 +1,7 @@
 ﻿using CommandLine;
 using System.Threading;
-using SerialIR.Common;
 
-namespace SerialIR
+namespace SerialIR.Console
 {
 
     class Options
@@ -20,7 +19,7 @@ namespace SerialIR
     {
         static void Main(string[] args)
         {
-            //args = new string[] { "-p","COM5", "-c", @"C:\Users\hkfuertes\source\repos\apple_silver_media_codes.json"};
+            //args = new string[] { "-p","COM7", "-v"};
 
             Parser.Default.ParseArguments<Options>(args)
                    .WithParsed<Options>(o =>
