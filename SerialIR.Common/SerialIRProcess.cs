@@ -47,7 +47,7 @@ namespace SerialIR.Common
                 }
 
                 this.Port = new SerialPort(comport, 9600, Parity.None, 8, StopBits.One);
-                this.Port.DataReceived += new SerialDataReceivedEventHandler(dataReceived);
+                //this.Port.DataReceived += new SerialDataReceivedEventHandler(dataReceived);
                 //this.Port.Open();
 
             }
@@ -69,7 +69,10 @@ namespace SerialIR.Common
             if (!this.Stop)
             {
                 this.Port.Open();
-                while (!this.Stop);
+                while (!this.Stop)
+                {
+                    this.processData(this.Port.ReadLine().TrimEnd(Environment.NewLine.ToCharArray()));
+                };
                 this.Port.Close();
             }
         }
@@ -83,6 +86,12 @@ namespace SerialIR.Common
         private void dataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             var data = this.Port.ReadExisting().TrimEnd(Environment.NewLine.ToCharArray());
+            this.processData(data);
+        }
+
+
+        private void processData(string data)
+        {
             if (data != "FFFFFFFF")
             {
                 if (this.Verbose || this.ReadOnly)

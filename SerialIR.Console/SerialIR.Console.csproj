@@ -84,10 +84,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SerialIRProcess.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -105,6 +103,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SerialIR.Common\SerialIR.Common.csproj">
+      <Project>{58cf9ec6-1ea2-4563-ac7a-0253158b7a79}</Project>
+      <Name>SerialIR.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

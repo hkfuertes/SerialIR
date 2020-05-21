@@ -1,5 +1,6 @@
 ﻿using CommandLine;
 using System.Threading;
+using SerialIR.Common;
 
 namespace SerialIR.Console
 {
@@ -19,7 +20,7 @@ namespace SerialIR.Console
     {
         static void Main(string[] args)
         {
-            //args = new string[] { "-p","COM7", "-v"};
+            args = new string[] { "-p","COM4", "-v"};
 
             Parser.Default.ParseArguments<Options>(args)
                    .WithParsed<Options>(o =>
