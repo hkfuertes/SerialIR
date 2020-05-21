@@ -10,10 +10,12 @@ You can find the sketch [here](SerialIR.ino). In order to compile it you need th
 To run the application simply open a terminal an run the `SerialIR.Console.exe` with the required `-c` and `-p` parameters.
 ```
 > .\SerialIR.Console.exe --help
-SerialIR 1.0.0
-Copyright (C) 2020 SerialIR
+SerialIR.Console 1.0.0.0
+Copyright c  2020
 
-  -p, --port       Required. COM port with Arduino.
+  -p, --port       COM port with Arduino.
+
+  -l, --list       (Default: false) List current COM ports.
 
   -c, --config     Configuration/Mapping file.
 
@@ -22,7 +24,6 @@ Copyright (C) 2020 SerialIR
   --help           Display this help screen.
 
   --version        Display version information.
-
 ```
 
 For the configuration/mapping file here is an example for the Apple Silver Remote:
