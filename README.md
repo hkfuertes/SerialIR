@@ -7,9 +7,9 @@ You can find the sketch [here](SerialIR.ino). In order to compile it you need th
  >Arduino-IRremote: https://github.com/z3t0/Arduino-IRremote or also via _Arduino IDE Library Manager_.
 
 ## Command Line Application
-To run the application simply open a terminal an run the `SerialIR.exe` with the required `-c` and `-p` parameters.
+To run the application simply open a terminal an run the `SerialIR.Console.exe` with the required `-c` and `-p` parameters.
 ```
-> .\SerialIR.exe --help
+> .\SerialIR.Console.exe --help
 SerialIR 1.0.0
 Copyright (C) 2020 SerialIR
 
