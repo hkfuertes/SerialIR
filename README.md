@@ -6,6 +6,9 @@ You can find the sketch [here](SerialIR.ino). In order to compile it you need th
 
  >Arduino-IRremote: https://github.com/z3t0/Arduino-IRremote or also via _Arduino IDE Library Manager_.
 
+**TO-DO**
+- Fritzing diagram for Arduino Nano and WemosD1
+
 ## Command Line Application
 To run the application simply open a terminal an run the `SerialIR.Console.exe` with the required `-c` and `-p` parameters.
 ```
