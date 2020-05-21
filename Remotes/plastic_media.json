@@ -1,0 +1,11 @@
+﻿{
+	"name": "Multimedia",
+	"remote": "Plastic Cheap Remote",
+	"keys": {
+		"FF906F": "VOLUME_UP",
+		"FFA857": "VOLUME_DOWN",
+		"FF22DD": "MEDIA_PLAY_PAUSE",
+		"FFC23D": "MEDIA_NEXT_TRACK",
+		"FF02FD": "MEDIA_PREV_TRACK"
+	}
+}
